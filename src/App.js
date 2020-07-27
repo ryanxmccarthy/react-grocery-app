@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import NavBar from "./components/navbar";
 import Counters from "./components/counters";
 import "./App.css";
 
-function App() {
+class App extends Component {
   state = {
     counters: [
       { id: 1, value: 4 },
@@ -36,12 +36,17 @@ function App() {
 
   render() {
     return (
-      <React.Fragment>
+      <div>
         <NavBar />
         <main className="container">
-          <Counters />
+          <Counters
+            onReset={this.handleReset}
+            onIncrement={this.handleIncrement}
+            onDelete={this.handleDelete}
+            counters={this.state.counters}
+          />
         </main>
-      </React.Fragment>
+      </div>
     );
   }
 }
